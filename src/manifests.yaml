@@ -1,13 +1,11 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  creationTimestamp: null
-  name: ns-techbier-DEIN_KUERZEL
+  name: ns-techbier-csb
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: hello-code-and-ski
   name: hello-code-and-ski
@@ -52,7 +50,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: DEIN_KUERZEL.techbier.ch
+  - host: csb.techbier.ch
     http:
       paths:
       - path: /
