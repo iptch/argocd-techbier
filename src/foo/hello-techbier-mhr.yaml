@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   creationTimestamp: null
-  name: ns-techbier-mhr-foo
+  name: ns-techbier-mhr
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -11,7 +11,6 @@ metadata:
   labels:
     app: hello-code-and-ski
   name: hello-code-and-ski
-  namespace: ns-techbier-mhr-foo
 spec:
   replicas: 3
   selector:
@@ -24,10 +23,6 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-#      annotations:
-#        vault.hashicorp.com/agent-inject: "true"
-#        vault.hashicorp.com/agent-inject-secret-password.txt: "secrets/data/serviceaccounts/ns-techbier-mhr-foo/hello-code-and-ski"
-#        vault.hashicorp.com/role: serviceaccounts
       labels:
         app: hello-code-and-ski
     spec:
@@ -35,15 +30,6 @@ spec:
       containers:
       - image: acrcodeandski.azurecr.io/code-and-ski-2024:latest
         name: hello-code-and-ski-container
-#        readinessProbe:
-#          failureThreshold: 3
-#          httpGet:
-#            path: /liveness
-#            port: 8000
-#            scheme: HTTP
-#          periodSeconds: 3
-#          successThreshold: 1
-#          timeoutSeconds: 1
 ---
 apiVersion: v1
 kind: Service
@@ -51,7 +37,6 @@ metadata:
   labels:
     app: hello-code-and-ski
   name: hello-code-and-ski
-  namespace: ns-techbier-mhr-foo
 spec:
   ports:
   - port: 8000
@@ -64,7 +49,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-hello-code-and-ski
-  namespace: ns-techbier-mhr-foo
 spec:
   ingressClassName: nginx
   rules:
@@ -78,14 +62,8 @@ spec:
             name: hello-code-and-ski
             port:
               number: 8000
-#  tls:
-#  - hosts:
-#    - app2.codeandski.ch
-#    secretName: ingress-cert
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: hello-code-and-ski
-  namespace: ns-techbier-mhr-foo
-
