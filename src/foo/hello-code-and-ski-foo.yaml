@@ -33,7 +33,7 @@ spec:
     spec:
       serviceAccountName: hello-code-and-ski
       containers:
-      - image: acrcodeandski.azurecr.io/codeandski-ska:0.1.0
+      - image: acrcodeandski.azurecr.io/code-and-ski-2024:latest
         name: hello-code-and-ski-container
         readinessProbe:
           failureThreshold: 3
