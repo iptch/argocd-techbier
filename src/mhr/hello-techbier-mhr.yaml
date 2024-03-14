@@ -24,7 +24,7 @@ spec:
   template:
     metadata:
       labels:
-        app: hello-code-and-ski
+        app: INCORRECT_LABEL_NEEDS_TO_BE_hello_code_and_ski
     spec:
       serviceAccountName: hello-code-and-ski
       containers:
