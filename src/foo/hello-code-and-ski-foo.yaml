@@ -35,15 +35,15 @@ spec:
       containers:
       - image: acrcodeandski.azurecr.io/code-and-ski-2024:latest
         name: hello-code-and-ski-container
-        readinessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /liveness
-            port: 8000
-            scheme: HTTP
-          periodSeconds: 3
-          successThreshold: 1
-          timeoutSeconds: 1
+#        readinessProbe:
+#          failureThreshold: 3
+#          httpGet:
+#            path: /liveness
+#            port: 8000
+#            scheme: HTTP
+#          periodSeconds: 3
+#          successThreshold: 1
+#          timeoutSeconds: 1
 ---
 apiVersion: v1
 kind: Service
