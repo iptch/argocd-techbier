@@ -24,10 +24,10 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-#      annotations:
-#        vault.hashicorp.com/agent-inject: "true"
-#        vault.hashicorp.com/agent-inject-secret-password.txt: "secrets/data/serviceaccounts/ns-hello-code-and-ski/hello-code-and-ski"
-#        vault.hashicorp.com/role: serviceaccounts
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/agent-inject-secret-password.txt: "secrets/data/serviceaccounts/ns-hello-code-and-ski/hello-code-and-ski"
+        vault.hashicorp.com/role: serviceaccounts
       labels:
         app: hello-code-and-ski
     spec:
