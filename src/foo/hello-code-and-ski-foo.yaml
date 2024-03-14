@@ -68,10 +68,10 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: app.codeandski.ch
+  - host: app2.codeandski.ch
     http:
       paths:
-      - path: /foo
+      - path: /
         pathType: Prefix
         backend:
           service:
@@ -80,7 +80,7 @@ spec:
               number: 8000
   tls:
   - hosts:
-    - app.codeandski.ch/foo
+    - app2.codeandski.ch
     secretName: ingress-cert
 ---
 apiVersion: v1
