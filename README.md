@@ -10,7 +10,7 @@ of the ArgoCD TechBier taking place on March 14th, 2024.
 
 > Note: Whenever you encounter DEIN_KUERZEL put your ipt shortname, in my case `mhr`, to avoid conflicts.
 
-
+Test
 ### Part 1 - ArgoCD Basics 🤓
 ```
 Goals
