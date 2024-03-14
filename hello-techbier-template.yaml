@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   creationTimestamp: null
-  name: ns-techbier-DEIN_KUERZEL
+  name: ns-techbier-wga
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -28,8 +28,8 @@ spec:
     spec:
       serviceAccountName: hello-code-and-ski
       containers:
-      - image: acrcodeandski.azurecr.io/code-and-ski-2024:latest
-        name: hello-code-and-ski-container
+        - image: acrcodeandski.azurecr.io/code-and-ski-2024:latest
+          name: hello-code-and-ski-container
 ---
 apiVersion: v1
 kind: Service
@@ -39,9 +39,9 @@ metadata:
   name: hello-code-and-ski
 spec:
   ports:
-  - port: 8000
-    protocol: TCP
-    targetPort: 8000
+    - port: 8000
+      protocol: TCP
+      targetPort: 8000
   selector:
     app: hello-code-and-ski
 ---
@@ -52,16 +52,16 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: DEIN_KUERZEL.techbier.ch
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: hello-code-and-ski
-            port:
-              number: 8000
+    - host: wga.techbier.ch
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hello-code-and-ski
+                port:
+                  number: 8000
 ---
 apiVersion: v1
 kind: ServiceAccount
