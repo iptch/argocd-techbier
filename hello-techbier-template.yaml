@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   creationTimestamp: null
-  name: ns-techbier-jgr
+  name: ns-techbier-DEIN_KUERZEL
 ---
 apiVersion: apps/v1
 kind: Deployment
