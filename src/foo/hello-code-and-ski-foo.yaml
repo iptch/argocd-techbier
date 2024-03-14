@@ -78,10 +78,10 @@ spec:
             name: hello-code-and-ski
             port:
               number: 8000
-  tls:
-  - hosts:
-    - app.codeandski.ch
-    secretName: ingress-cert
+#  tls:
+#  - hosts:
+#    - app.codeandski.ch
+#    secretName: ingress-cert
 ---
 apiVersion: v1
 kind: ServiceAccount
