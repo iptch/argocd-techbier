@@ -52,7 +52,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: app2.codeandski.ch
+  - host: mhr.techbier.ch
     http:
       paths:
       - path: /
