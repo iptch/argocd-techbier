@@ -1,0 +1,91 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  name: ns-techbier-mhr-bar
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: hello-code-and-ski
+  name: hello-code-and-ski
+  namespace: ns-techbier-mhr-bar
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-code-and-ski
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+#      annotations:
+#        vault.hashicorp.com/agent-inject: "true"
+#        vault.hashicorp.com/agent-inject-secret-password.txt: "secrets/data/serviceaccounts/ns-hello-code-and-ski/hello-code-and-ski"
+#        vault.hashicorp.com/role: serviceaccounts
+      labels:
+        app: hello-code-and-ski
+    spec:
+      serviceAccountName: hello-code-and-ski
+      containers:
+      - image: acrcodeandski.azurecr.io/sample-app:latest
+        name: hello-code-and-ski-container
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /liveness
+            port: 8000
+            scheme: HTTP
+          periodSeconds: 3
+          successThreshold: 1
+          timeoutSeconds: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: hello-code-and-ski
+  name: hello-code-and-ski
+  namespace: ns-techbier-mhr-bar
+spec:
+  ports:
+  - port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    app: hello-code-and-ski
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-hello-code-and-ski
+  namespace: ns-techbier-mhr-bar
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: app.codeandski.ch
+    http:
+      paths:
+      - path: /bar
+        pathType: Prefix
+        backend:
+          service:
+            name: hello-code-and-ski
+            port:
+              number: 8000
+  tls:
+  - hosts:
+    - app.codeandski.ch
+    secretName: ingress-cert
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: hello-code-and-ski
+  namespace: ns-techbier-mhr-bar
+
