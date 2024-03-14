@@ -31,7 +31,7 @@ Goals
 **1.2 Fixing your Application in GitOps Style [10 min]**
 - Find _your_ application (type DEIN_KUERZEL in the search, it's actually named hello_DEIN_KUERZEL). Open it up with: ![img.png](images/application_open_button.png)
 - The Application seems to be out of sync. Why is that? Can you spot the reason?
-- Implement the fix on YOUR BRANCH (!) and push it to GitHub.
+- Implement the fix on YOUR BRANCH (!) and push it to GitHub
   <details>
   <summary>Hints for solution</summary>
   
