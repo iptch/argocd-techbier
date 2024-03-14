@@ -24,7 +24,7 @@ spec:
   template:
     metadata:
       labels:
-        app: hello_code_and_ski
+        app: hello-code-and-ski
     spec:
       serviceAccountName: hello-code-and-ski
       containers:
